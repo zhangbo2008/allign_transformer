@@ -169,22 +169,23 @@ def train(model, training_data, validation_data, optimizer, device, opt):
                     elapse=(time.time()-start)/60))
 
         valid_accus += [valid_accu]
+# 大于25时候再存:太早没必要
+        if epoch_i>20:
+            model_state_dict = model.state_dict()
+            checkpoint = {
+                'model': model_state_dict,
+                'settings': opt,
+                'epoch': epoch_i}
 
-        model_state_dict = model.state_dict()
-        checkpoint = {
-            'model': model_state_dict,
-            'settings': opt,
-            'epoch': epoch_i}
-
-        if opt.save_model:
-            if opt.save_mode == 'all':
-                model_name = opt.save_model + '_accu_{accu:3.3f}.chkpt'.format(accu=100*valid_accu)
-                torch.save(checkpoint, model_name)
-            elif opt.save_mode == 'best':
-                model_name = opt.save_model + '.chkpt'
-                if valid_accu >= max(valid_accus):
+            if opt.save_model:
+                if opt.save_mode == 'all':
+                    model_name = opt.save_model + '_accu_{accu:3.3f}.chkpt'.format(accu=100*valid_accu)
                     torch.save(checkpoint, model_name)
-                    print('    - [Info] The checkpoint file has been updated.',model_name)
+                elif opt.save_mode == 'best':
+                    model_name = opt.save_model + '.chkpt'
+                    if valid_accu >= max(valid_accus):
+                        torch.save(checkpoint, model_name)
+                        print('    - [Info] The checkpoint file has been updated.',model_name)
 
         # if log_train_file and log_valid_file:
         #     with open(log_train_file, 'a') as log_tf, open(log_valid_file, 'a') as log_vf:
