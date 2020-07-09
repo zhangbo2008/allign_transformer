@@ -104,7 +104,7 @@ def train_epoch(model, training_data, optimizer, device, smoothing,opt):
 
         src_word2idx1 = data['dict']['src']
         tgt_word2idx1 = data['dict']['tgt']
-        summy=torch.tensor(0)
+        summy=[]
         for i in check_dic:
             left=i
             right=check_dic[i]
@@ -125,14 +125,17 @@ def train_epoch(model, training_data, optimizer, device, smoothing,opt):
                         if src_seq[kk,qq]==leftindex and tgt_seq[kk,jj]==rightindex:
                             bingo.append([jj,qq])
                 # 按照bingo里面挑出atten_list中数据加和.
-                for ii2 in atten_list[kk]:
+                for uu in bingo:
+                    tmp=torch.mean(atten_list[kk][:,uu[0],uu[1]])
+                    summy.append((torch.tensor(tmp)-0.7)**2) # 计算他跟0.7之间的距离,让后让这个距离逼近0
+                    # summy+=torch.mean(atten_list[kk][:,uu[0],uu[1]]) # 让这个平均数趋近于0.7趋近于1太绝对了不好.
 
-                   summy+=ii2[:,jj,qq].sum()
 
+        summy=torch.mean(torch.tensor(summy))
 
         loss, n_correct = cal_performance(pred, gold, smoothing=smoothing)
 
-        loss=loss-summy
+        loss=loss+summy
         loss.backward()
 
         # update parameters
