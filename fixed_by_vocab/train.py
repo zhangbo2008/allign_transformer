@@ -128,8 +128,9 @@ def train_epoch(model, training_data, optimizer, device, smoothing,opt):
             # 在atten_list中找到索引匹配上的,然后抽出来他的值给loss
             atten_list=torch.stack(atten_list) # 8个head,6个历史值.
             atten_list=torch.reshape(atten_list,(len(tgt_seq),-1,atten_list.shape[2],atten_list.shape[3]))
-            bingo=[]
+
             for kk in range(len(tgt_seq)):
+                bingo = []
                 for jj in range(len(tgt_seq[kk])):
                     for qq in range(len(src_seq[kk])):
                         if src_seq[kk,qq]==leftindex and tgt_seq[kk,jj]==rightindex:

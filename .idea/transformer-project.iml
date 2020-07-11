@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/fixed_by_vocab" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/attention-is-all-you-need-pytorch-修改成专业词典" />
     </content>
-    <orderEntry type="jdk" jdkName="Remote Python 3.6.8 (sftp://root@127.0.0.1:10022/usr/bin/python3)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
