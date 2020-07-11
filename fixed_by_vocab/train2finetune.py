@@ -59,12 +59,7 @@ def train_epoch(model, training_data, optimizer, device, smoothing,opt):
     ''' Epoch operation in training phase'''
 
     model.train()
-    '''
-    读取就的参数.
-    
-    
-    
-    '''
+
     total_loss = 0
     n_word_total = 0
     n_word_correct = 0
