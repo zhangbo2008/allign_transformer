@@ -82,6 +82,16 @@ def train_epoch(model, training_data, optimizer, device, smoothing,opt):
         # backward
         '''
         2020-07-09,21点52 下面就是我的核心算法.
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         '''
 
 
