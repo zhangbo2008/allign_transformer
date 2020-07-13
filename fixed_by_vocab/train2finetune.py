@@ -301,7 +301,7 @@ def main():
     '''
     opt.saved_weight='c:/trained.chkpt'          # 就的模型的位置.
     opt.data='yunixng_bash/data/multi30k.atok.low.pt'  # 数据集的位置.
-    opt.save_model='trained'  # 数据集的位置.
+    opt.save_model='trained_finetune'  # 保存模型的名字.
     opt.save_mode='best'  # 数据集的位置.
     opt.proj_share_weight =True  # 数据集的位置.
     opt.label_smoothing =True # 数据集的位置.
