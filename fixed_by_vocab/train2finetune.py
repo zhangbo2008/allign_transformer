@@ -299,6 +299,7 @@ def main():
     '''
     下面来把参数写这里, 就方便了.
     '''
+    opt.saved_weight='c:/trained.chkpt'          # 就的模型的位置.
     opt.data='yunixng_bash/data/multi30k.atok.low.pt'  # 数据集的位置.
     opt.save_model='trained'  # 数据集的位置.
     opt.save_mode='best'  # 数据集的位置.
@@ -346,6 +347,9 @@ def main():
             filter(lambda x: x.requires_grad, transformer.parameters()),
             betas=(0.9, 0.98), eps=1e-09),
         opt.d_model, opt.n_warmup_steps)
+    tmp=torch.load(opt.saved_weight,map_location=torch.device('cpu'))['model'] # 源代码非常闲的piyan加一层model草他妈的.
+    transformer.load_state_dict(tmp)
+
 
     train(transformer, training_data, validation_data, optimizer, device ,opt)
 

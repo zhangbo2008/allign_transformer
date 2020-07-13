@@ -298,14 +298,15 @@ def main():
     parser.add_argument('-label_smoothing', action='store_true')  # 这种action里面写上就表示默认调用的话就是true
 
     opt = parser.parse_args()
-    opt.cuda = not opt.no_cuda
+
     opt.d_word_vec = opt.d_model
 
     '''
     下面来把参数写这里, 就方便了.
     '''
+    opt.saved_weight='/trained.chkpt'          # 就的模型的位置.
     opt.data='yunixng_bash/data/multi30k.atok.low.pt'  # 数据集的位置.
-    opt.save_model='trained'  # 数据集的位置.
+    opt.save_model='trained'  # 存模型的名字.
     opt.save_mode='best'  # 数据集的位置.
     opt.proj_share_weight =True  # 数据集的位置.
     opt.label_smoothing =True # 数据集的位置.
@@ -313,7 +314,7 @@ def main():
     opt.batch_size=200
     opt.epoch=30
 
-
+    print(opt,44444444444444444444444444444444444444444444444444444444444444)
     #========= Loading Dataset =========#
     data = torch.load(opt.data)# 这里面的数据已经经过编码了. 具体的编码规则也都在data里面,data里面是一个字典.并且src 和tgt的字典是不一样的,所以上面的embs_share_weight 参数一定要false.  数据集一共大小才3mb. 真方便. 就是根目录下面的multi30k.atok.low.pt这个.   应该是一个小数据及,3万个句子对, 字典3k. 只有点常用的英文字. 并且没用使用word-piece. 只是word级别的编码. 所以随便给一个句子,超出字典非常正常. 但是目前用这个,对于测试非常方便,速度很快.
     opt.max_token_seq_len = data['settings'].max_token_seq_len
