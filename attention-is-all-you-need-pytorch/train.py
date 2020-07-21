@@ -240,6 +240,15 @@ def main():
 
     #========= Loading Dataset =========#
     data = torch.load(opt.data)# 这里面的数据已经经过编码了. 具体的编码规则也都在data里面,data里面是一个字典.并且src 和tgt的字典是不一样的,所以上面的embs_share_weight 参数一定要false.  数据集一共大小才3mb. 真方便. 就是根目录下面的multi30k.atok.low.pt这个.
+
+    '''
+    下面修改data为自己读取的东西.
+    '''
+
+
+
+
+
     opt.max_token_seq_len = data['settings'].max_token_seq_len
 # 进行数据长度预处理
     training_data, validation_data = prepare_dataloaders(data, opt)

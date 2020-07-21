@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="root@127.0.0.1:10022" showAutoUploadSettingsWarning="false">
+  <component name="PublishConfigData" serverName="root@127.0.0.1:10022" showAutoUploadSettingsWarning="false">
     <serverData>
       <paths name="root@127.0.0.1:10022">
         <serverdata>
@@ -9,14 +9,6 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="xieniantao@119.3.178.138:22">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/home/xieniantao/Projects/zhang222/tf2" local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </paths>
     </serverData>
-    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
